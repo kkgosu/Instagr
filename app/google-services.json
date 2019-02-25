@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "857630274415",
+    "firebase_url": "https://instagram-f1ccf.firebaseio.com",
+    "project_id": "instagram-f1ccf",
+    "storage_bucket": "instagram-f1ccf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857630274415:android:efde724d66610f75",
+        "android_client_info": {
+          "package_name": "com.example.instagr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857630274415-u6idppjv9quo0hm85md0mugp4s529naj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.instagr",
+            "certificate_hash": "e8cc59890273e82864c275153704164084440037"
+          }
+        },
+        {
+          "client_id": "857630274415-p2v0c4o40lsep8i6hkmsmhc46ksc9877.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxJ1Z47AUO-G4P7G--RZwg16bOp5pjWlQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857630274415-p2v0c4o40lsep8i6hkmsmhc46ksc9877.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

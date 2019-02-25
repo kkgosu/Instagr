@@ -1,0 +1,93 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="profile_text" parent="text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+    <style name="profile_text_count" parent="text">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <dimen name="toolbar_height">50dp</dimen>
+    <style name="toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:background">@color/whitish</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+    <style name="icon">
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:layout_width">@dimen/toolbar_height</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="toolbar_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="toolbar_text" parent="toolbar_title">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+    <style name="edit_profile_label">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">23dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+    <style name="edit_profile_input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+    <style name="big_input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/big_input_bg</item>
+    </style>
+    <style name="big_button" parent="big_input">
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:textColor">@color/btn_color</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:stateListAnimator">@animator/btn_animator</item>
+    </style>
+    <style name="small_button">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:textColor">@color/btn_color</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:stateListAnimator">@animator/btn_animator</item>
+    </style>
+    <style name="secondary_small_btn" parent="small_button">
+        <item name="android:background">@drawable/grey_btn_bg</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

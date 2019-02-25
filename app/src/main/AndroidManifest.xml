@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.instagr">
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="true"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.SearchActivity"/>
+        <activity android:name=".activities.ShareActivity"/>
+        <activity android:name=".activities.LikesActivity"/>
+        <activity android:name=".activities.ProfileActivity"/>
+        <activity android:name=".activities.EditProfileActivity"/>
+        <activity
+                android:name=".activities.LoginActivity"
+                android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name=".activities.RegisterActivity"
+                android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".activities.ProfileSettingsActivity"/>
+        <activity android:name=".activities.AddFriendsActivity"/>
+
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="com.example.instagr.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
+
+    </application>
+
+</manifest>
