@@ -48,6 +48,9 @@ class ProfileActivity : BaseActivity(4) {
             mUser = it.asUser()!!
             profile_image.loadUserPhoto(mUser.photo)
             username_text.text = mUser.username
+            name_text.text = mUser.name
+            bio_text.text = mUser.bio
+            website_text.text = mUser.website
         })
 
         images_recycler.layoutManager = GridLayoutManager(this, 3)
