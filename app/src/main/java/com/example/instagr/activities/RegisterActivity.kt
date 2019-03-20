@@ -54,11 +54,11 @@ class RegisterActivity : AppCompatActivity(), EmailFragment.Listener, NamePassFr
                         .addToBackStack(null)
                         .commit()
                 } else {
-                    showToast("This email already exists")
+                    showToast(getString(R.string.this_email_already_exists))
                 }
             }
         } else {
-            showToast("Please enter email")
+            showToast(getString(R.string.please_enter_an_email))
         }
     }
 
@@ -73,18 +73,18 @@ class RegisterActivity : AppCompatActivity(), EmailFragment.Listener, NamePassFr
                 }
             } else {
                 Log.e(TAG, "onRegister: email is null")
-                showToast("Please enter email")
+                showToast(getString(R.string.please_enter_an_email))
                 supportFragmentManager.popBackStack()
             }
 
         } else {
-            showToast("Please enter full name and password")
+            showToast(getString(R.string.please_enter_fullname_and_password))
         }
     }
 
     private fun unknownRegisterError(it: Task<*>) {
         Log.e(TAG, "onRegister: failed to create user profile", it.exception)
-        showToast("smth wrong happened")
+        showToast(getString(R.string.something_wrong_happened))
     }
 
     override fun onVisibilityChanged(isKeyboardOpen: Boolean) {

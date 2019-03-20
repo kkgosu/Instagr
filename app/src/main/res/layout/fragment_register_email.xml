@@ -18,13 +18,13 @@
             android:id="@+id/email_input"
             app:layout_constraintTop_toBottomOf="@id/person_image"
             android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:hint="@string/email"
     />
 
     <Button
             android:id="@+id/next_btn"
             style="@style/big_button"
             app:layout_constraintTop_toBottomOf="@id/email_input"
-            android:text="Next"/>
+            android:text="@string/next"/>
 
 </android.support.constraint.ConstraintLayout>

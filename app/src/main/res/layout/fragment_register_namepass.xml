@@ -8,7 +8,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter full name and password"
+            android:text="@string/enter_full_name_and_password"
             android:textSize="17sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -20,21 +20,21 @@
     <EditText
             android:id="@+id/full_name_input"
             style="@style/big_input"
-            android:hint="Full name"
+            android:hint="@string/full_name"
             android:inputType="textPersonName"
             app:layout_constraintTop_toBottomOf="@id/title"/>
 
     <EditText
             android:id="@+id/password_input"
             style="@style/big_input"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@id/full_name_input"/>
 
     <Button
             android:id="@+id/register_btn"
             style="@style/big_button"
-            android:text="Register"
+            android:text="@string/register"
             app:layout_constraintTop_toBottomOf="@id/password_input"
     />
 

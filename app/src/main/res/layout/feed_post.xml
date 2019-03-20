@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools">
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/icon_image"
             style="@style/icon"
@@ -13,7 +14,7 @@
             android:id="@+id/username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="smth"
+            tools:text="smth"
             app:layout_constraintTop_toTopOf="@id/icon_image"
             app:layout_constraintBottom_toBottomOf="@id/icon_image"
             app:layout_constraintStart_toEndOf="@id/icon_image"
@@ -58,7 +59,7 @@
             android:id="@+id/likes_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="416,123 likes"
+            tools:text="416,123 likes"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +70,7 @@
             android:id="@+id/caption_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="smth This is a caption for the picture. Imma make it long as far as a can loooooool."
+            tools:text="smth This is a caption for the picture. Imma make it long as far as a can loooooool."
             app:layout_constraintStart_toStartOf="parent"
             android:paddingStart="10dp"
             android:textColor="@color/black"

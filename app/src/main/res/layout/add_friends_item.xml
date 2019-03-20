@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
         android:paddingStart="10dp"
         android:paddingEnd="10dp">
 
@@ -20,7 +20,7 @@
             android:id="@+id/username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oleg"
+            tools:text="oleg"
             app:layout_constraintVertical_bias="0.2"
             app:layout_constraintStart_toEndOf="@id/photo_image"
             app:layout_constraintTop_toTopOf="@id/photo_image"
@@ -32,14 +32,14 @@
             android:id="@+id/name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oleg"
+            tools:text="oleg"
             app:layout_constraintTop_toBottomOf="@id/username_text"
             app:layout_constraintStart_toStartOf="@id/username_text"/>
     <Button
             android:id="@+id/follow_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Follow"
+            android:text="@string/follow"
             style="@style/small_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/username_text"/>
@@ -47,7 +47,7 @@
             android:id="@+id/unfollow_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Follow"
+            android:text="@string/follow"
             style="@style/secondary_small_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/username_text"/>

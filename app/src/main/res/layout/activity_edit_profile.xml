@@ -32,7 +32,7 @@
                         app:layout_constraintStart_toEndOf="@id/close_image"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Edit Profile"/>
+                        android:text="@string/edit_profile"/>
 
                 <ImageView
                         android:id="@+id/save_image"
@@ -61,7 +61,7 @@
                 android:id="@+id/change_photo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Change photo"
+                android:text="@string/change_photo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_image"
@@ -72,7 +72,7 @@
         <TextView
                 android:id="@+id/name_label"
                 style="@style/edit_profile_label"
-                android:text="Name"
+                android:text="@string/name"
                 android:labelFor="@id/name_input"
                 app:layout_constraintTop_toBottomOf="@id/change_photo_text"/>
 
@@ -84,7 +84,7 @@
         <TextView
                 android:id="@+id/username_label"
                 style="@style/edit_profile_label"
-                android:text="Username"
+                android:text="@string/username"
                 android:labelFor="@id/username_input"
                 app:layout_constraintTop_toBottomOf="@id/name_input"/>
 
@@ -96,7 +96,7 @@
         <TextView
                 android:id="@+id/website_label"
                 style="@style/edit_profile_label"
-                android:text="Website"
+                android:text="@string/website"
                 android:labelFor="@id/website_input"
                 app:layout_constraintTop_toBottomOf="@id/username_input"/>
 
@@ -108,7 +108,7 @@
         <TextView
                 android:id="@+id/bio_label"
                 style="@style/edit_profile_label"
-                android:text="Bio"
+                android:text="@string/bio"
                 android:labelFor="@id/bio_input"
                 app:layout_constraintTop_toBottomOf="@id/website_input"/>
 
@@ -122,13 +122,13 @@
                 style="@style/edit_profile_label"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
-                android:text="Private information"
+                android:text="@string/private_information"
                 app:layout_constraintTop_toBottomOf="@id/bio_input"/>
 
         <TextView
                 android:id="@+id/email_label"
                 style="@style/edit_profile_label"
-                android:text="Email"
+                android:text="@string/email"
                 android:layout_marginTop="20dp"
                 android:labelFor="@id/email_input"
                 app:layout_constraintTop_toBottomOf="@id/private_info_text"/>
@@ -141,7 +141,7 @@
         <TextView
                 android:id="@+id/phone_label"
                 style="@style/edit_profile_label"
-                android:text="Phone"
+                android:text="@string/phone"
                 android:labelFor="@id/phone_input"
                 app:layout_constraintTop_toBottomOf="@id/email_input"/>
 
