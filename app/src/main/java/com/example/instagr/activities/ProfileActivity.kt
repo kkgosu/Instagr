@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.instagr.R
 import com.example.instagr.activities.addfriends.AddFriendsActivity
+import com.example.instagr.activities.editprofile.EditProfileActivity
 import com.example.instagr.models.User
 import com.example.instagr.utils.FirebaseHelper
 import com.example.instagr.utils.ValueEventListenerAdapter

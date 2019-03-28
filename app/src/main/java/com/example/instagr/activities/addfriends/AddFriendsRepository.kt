@@ -5,9 +5,7 @@ import com.example.instagr.activities.asUser
 import com.example.instagr.activities.map
 import com.example.instagr.activities.task
 import com.example.instagr.models.User
-import com.example.instagr.utils.FirebaseLiveData
-import com.example.instagr.utils.TaskSourceOnCompleteListener
-import com.example.instagr.utils.ValueEventListenerAdapter
+import com.example.instagr.utils.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
@@ -25,10 +23,9 @@ interface AddFriendsRepository {
 }
 
 class FirebaseAddFriendsRepository : AddFriendsRepository {
-    private val reference = FirebaseDatabase.getInstance().reference
 
     override fun getUsers(): LiveData<List<User>> =
-        FirebaseLiveData(reference.child("users")).map {
+        database.child("users").liveData().map {
             it.children.map { it.asUser()!! }
         }
 
@@ -46,12 +43,12 @@ class FirebaseAddFriendsRepository : AddFriendsRepository {
 
     override fun copyFeedPosts(postsAuthorUid: String, toUid: String): Task<Unit> =
         task { taskSource ->
-            reference.child("feed-posts").child(postsAuthorUid)
+            database.child("feed-posts").child(postsAuthorUid)
                 .orderByChild("uid")
                 .equalTo(postsAuthorUid)
                 .addListenerForSingleValueEvent(ValueEventListenerAdapter {
                     val postsMap = it.children.map { it.key to it.value }.toMap()
-                    reference.child("feed-posts").child(toUid).updateChildren(postsMap)
+                    database.child("feed-posts").child(toUid).updateChildren(postsMap)
                         .toUnit()
                         .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
 
@@ -60,22 +57,22 @@ class FirebaseAddFriendsRepository : AddFriendsRepository {
 
     override fun deleteFeedPosts(postsAuthorUid: String, toUid: String): Task<Unit> =
         task { taskSource ->
-            reference.child("feed-posts").child(toUid)
+            database.child("feed-posts").child(toUid)
                 .orderByChild("uid")
                 .equalTo(postsAuthorUid)
                 .addListenerForSingleValueEvent(ValueEventListenerAdapter {
                     val postsMap = it.children.map { it.key to null }.toMap()
-                    reference.child("feed-posts").child(toUid).updateChildren(postsMap)
+                    database.child("feed-posts").child(toUid).updateChildren(postsMap)
                         .toUnit()
                         .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
 
                 })
         }
 
-    private fun getFollows(fromUid: String, toUid: String) = reference.child("users").child(fromUid)
+    private fun getFollows(fromUid: String, toUid: String) = database.child("users").child(fromUid)
         .child("follows").child(toUid)
 
-    private fun getFollowers(fromUid: String, toUid: String) = reference.child("users").child(toUid)
+    private fun getFollowers(fromUid: String, toUid: String) = database.child("users").child(toUid)
         .child("followers").child(fromUid)
 
 
