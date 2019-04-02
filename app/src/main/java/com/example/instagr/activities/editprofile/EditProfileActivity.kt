@@ -8,17 +8,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.instagr.R
-import com.example.instagr.activities.ViewModelFactory
-import com.example.instagr.activities.loadUserPhoto
-import com.example.instagr.activities.showToast
-import com.example.instagr.activities.toStringOrNull
+import com.example.instagr.activities.*
 import com.example.instagr.models.User
 import com.example.instagr.utils.CameraHelper
 import com.example.instagr.view.PasswordDialog
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 
-class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
+class EditProfileActivity : BaseActivity(), PasswordDialog.Listener {
 
     private lateinit var mUser: User
     private lateinit var mPendingUser: User
@@ -39,8 +36,7 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
         save_image.setOnClickListener { updateProfile() }
         cameraHelper = CameraHelper(this)
 
-        mViewModel = ViewModelProviders.of(this, ViewModelFactory())
-            .get(EditProfileViewModel::class.java)
+        mViewModel = initViewModel()
         mViewModel.user.observe(this, Observer {
             it.let {
                 mUser = it!!
@@ -58,9 +54,7 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == cameraHelper.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            mViewModel.uploadAndSetUserPhoto(cameraHelper.imageUri!!).addOnFailureListener {
-                showToast(it.message)
-            }
+            mViewModel.uploadAndSetUserPhoto(cameraHelper.imageUri!!)
         }
     }
 
@@ -97,7 +91,6 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
             currentUser = mUser,
             newUser = user
         )
-            .addOnFailureListener { showToast(it.message) }
             .addOnSuccessListener {
                 showToast(getString(R.string.profile_updated))
                 finish()
@@ -121,7 +114,6 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
                 password = password
             )
                 .addOnSuccessListener { updateUser(mPendingUser) }
-                .addOnFailureListener { showToast(it.message) }
 
         } else {
             showToast(getString(R.string.you_should_enter_your_password))

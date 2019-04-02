@@ -16,9 +16,10 @@ import com.example.instagr.activities.editprofile.EditProfileActivity
 import com.example.instagr.models.User
 import com.example.instagr.utils.FirebaseHelper
 import com.example.instagr.utils.ValueEventListenerAdapter
+import com.example.instagr.view.setupBottomNavigation
 import kotlinx.android.synthetic.main.activity_profile.*
 
-class ProfileActivity : BaseActivity(4) {
+class ProfileActivity : BaseActivity() {
     private val TAG = "ProfileActivity"
     private lateinit var mFirebaseHelper: FirebaseHelper
 
@@ -27,7 +28,7 @@ class ProfileActivity : BaseActivity(4) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        setupBottomNavigation()
+        setupBottomNavigation(4)
         Log.d(TAG, "onCreate: ")
 
         edit_profile_button.setOnClickListener {

@@ -13,7 +13,7 @@ import com.example.instagr.utils.GlideApp
 import com.example.instagr.utils.ValueEventListenerAdapter
 import kotlinx.android.synthetic.main.activity_share.*
 
-class ShareActivity : BaseActivity(2) {
+class ShareActivity : BaseActivity() {
     private val TAG = "ShareActivity"
     private lateinit var mCamera: CameraHelper
     private lateinit var mFirebaseHelper: FirebaseHelper

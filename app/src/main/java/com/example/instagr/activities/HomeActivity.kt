@@ -21,11 +21,12 @@ import com.example.instagr.R
 import com.example.instagr.models.FeedPost
 import com.example.instagr.utils.FirebaseHelper
 import com.example.instagr.utils.ValueEventListenerAdapter
+import com.example.instagr.view.setupBottomNavigation
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.feed_post.view.*
 
-class HomeActivity : BaseActivity(0), FeedAdapter.Listener {
+class HomeActivity : BaseActivity(), FeedAdapter.Listener {
 
     private val TAG = "HomeActivity"
     private lateinit var mFirebaseHelper: FirebaseHelper
@@ -35,7 +36,7 @@ class HomeActivity : BaseActivity(0), FeedAdapter.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setupBottomNavigation()
+        setupBottomNavigation(0)
         Log.d(TAG, "onCreate: ")
 
         mFirebaseHelper = FirebaseHelper(this)
