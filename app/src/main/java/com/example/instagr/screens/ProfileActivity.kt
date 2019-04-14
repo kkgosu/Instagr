@@ -21,6 +21,7 @@ import com.example.instagr.screens.common.loadUserPhoto
 import com.example.instagr.data.firebase.common.FirebaseHelper
 import com.example.instagr.common.ValueEventListenerAdapter
 import com.example.instagr.screens.common.setupBottomNavigation
+import com.example.instagr.screens.profilesettings.ProfileSettingsActivity
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity() {

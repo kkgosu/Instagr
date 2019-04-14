@@ -13,6 +13,7 @@ import com.example.instagr.R
 import com.example.instagr.models.User
 import com.example.instagr.screens.common.coordinateBtnAndInputs
 import com.example.instagr.screens.common.showToast
+import com.example.instagr.screens.home.HomeActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth

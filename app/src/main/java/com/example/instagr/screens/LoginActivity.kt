@@ -8,6 +8,7 @@ import android.view.View
 import com.example.instagr.R
 import com.example.instagr.screens.common.coordinateBtnAndInputs
 import com.example.instagr.screens.common.showToast
+import com.example.instagr.screens.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent

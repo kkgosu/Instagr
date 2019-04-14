@@ -8,6 +8,7 @@ import android.content.Intent
 import android.util.Log
 import com.example.instagr.R
 import com.example.instagr.screens.*
+import com.example.instagr.screens.home.HomeActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
@@ -59,5 +60,6 @@ class InstagramBottomNavigation(
 }
 
 fun BaseActivity.setupBottomNavigation(navNumber: Int) {
-    InstagramBottomNavigation(bottom_navigation_view, navNumber, this)
+    val bnv = InstagramBottomNavigation(bottom_navigation_view, navNumber, this)
+    this.lifecycle.addObserver(bnv)
 }

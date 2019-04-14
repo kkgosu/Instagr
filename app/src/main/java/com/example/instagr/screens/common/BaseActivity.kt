@@ -3,9 +3,11 @@ package com.example.instagr.screens.common
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.instagr.screens.LoginActivity
 
 abstract class BaseActivity() : AppCompatActivity() {
 
@@ -25,6 +27,11 @@ abstract class BaseActivity() : AppCompatActivity() {
     protected inline fun <reified T : ViewModel> initViewModel(): T =
         ViewModelProviders.of(this, ViewModelFactory(commonViewModel))
             .get(T::class.java)
+
+    fun goToLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
+    }
 
 
     companion object {

@@ -1,5 +1,6 @@
 package com.example.instagr.screens.addfriends
 
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import com.example.instagr.R
 import com.example.instagr.screens.common.loadUserPhoto
 import com.example.instagr.models.User
+import com.example.instagr.screens.common.SimpleCallback
 
 import kotlinx.android.synthetic.main.add_friends_item.view.*
 
@@ -30,20 +32,20 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
 
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        with(p0) {
+        with(p0.view) {
             val user = mUsers[p1]
-            view.photo_image.loadUserPhoto(user.photo)
-            view.username_text.text = user.username
-            view.name_text.text = user.name
+            photo_image.loadUserPhoto(user.photo)
+            username_text.text = user.username
+            name_text.text = user.name
             val follows = mFollows[user.uid] ?: false
-            view.follow_btn.setOnClickListener { listener.follow(user.uid) }
-            view.unfollow_btn.setOnClickListener { listener.unfollow(user.uid) }
+            follow_btn.setOnClickListener { listener.follow(user.uid) }
+            unfollow_btn.setOnClickListener { listener.unfollow(user.uid) }
             if (follows) {
-                view.follow_btn.visibility = View.GONE
-                view.unfollow_btn.visibility = View.VISIBLE
+                follow_btn.visibility = View.GONE
+                unfollow_btn.visibility = View.VISIBLE
             } else {
-                view.follow_btn.visibility = View.VISIBLE
-                view.unfollow_btn.visibility = View.GONE
+                follow_btn.visibility = View.VISIBLE
+                unfollow_btn.visibility = View.GONE
             }
         }
     }
@@ -52,10 +54,11 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
 
 
     fun update(users: List<User>, follows: Map<String, Boolean>) {
+        val diffResult = DiffUtil.calculateDiff(SimpleCallback(mUsers, users) { it.uid})
         mUsers = users
         mPositions = users.withIndex().map { (idx, user) -> user.uid to idx }.toMap()
         mFollows = follows
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun followed(uid: String) {
