@@ -13,4 +13,4 @@ interface FeedPostsRepository {
     fun getLikes(postId: String) : LiveData<List<FeedPostLike>>
 }
 
-data class FeedPostLike(val userId: String)
+data class FeedPostLike(val userId: String?)

@@ -11,6 +11,7 @@ class HomeViewModel(
     private val onFailureListener: OnFailureListener,
     private val feedPostsRepo: FeedPostsRepository
 ) : ViewModel() {
+
     lateinit var uid: String
     lateinit var feedPosts: LiveData<List<FeedPost>>
     private var loadedLikes = mapOf<String, LiveData<FeedPostLikes>>()
@@ -26,7 +27,7 @@ class HomeViewModel(
         feedPostsRepo.toggleLike(postId, uid).addOnFailureListener(onFailureListener)
     }
 
-    fun getLikes(postId: String): LiveData<FeedPostLikes>? = loadLikes(postId)
+    fun getLikes(postId: String): LiveData<FeedPostLikes>? = loadedLikes[postId]
 
     fun loadLikes(postId: String): LiveData<FeedPostLikes> {
         val existingLoadedLikes = loadedLikes[postId]

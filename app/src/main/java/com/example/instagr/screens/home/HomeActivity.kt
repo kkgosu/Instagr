@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity(), FeedAdapter.Listener {
 
-    private lateinit var mFirebaseHelper: FirebaseHelper
     private lateinit var mAdapter: FeedAdapter
     private lateinit var mViewModel: HomeViewModel
 
