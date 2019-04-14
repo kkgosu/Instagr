@@ -1,11 +1,11 @@
 package com.example.instagr.data.firebase
 
-import com.example.instagr.utils.toUnit
-import com.example.instagr.activities.task
+import com.example.instagr.common.task
+import com.example.instagr.common.toUnit
 import com.example.instagr.data.FeedPostsRepository
-import com.example.instagr.utils.TaskSourceOnCompleteListener
-import com.example.instagr.utils.ValueEventListenerAdapter
-import com.example.instagr.utils.database
+import com.example.instagr.data.firebase.common.database
+import com.example.instagr.common.TaskSourceOnCompleteListener
+import com.example.instagr.common.ValueEventListenerAdapter
 import com.google.android.gms.tasks.Task
 
 class FirebaseFeedPostsRepository : FeedPostsRepository {

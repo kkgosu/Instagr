@@ -2,13 +2,12 @@ package com.example.instagr.data.firebase
 
 import android.arch.lifecycle.LiveData
 import android.net.Uri
-import com.example.instagr.utils.toUnit
-import com.example.instagr.activities.asUser
-import com.example.instagr.activities.map
-import com.example.instagr.activities.task
+import com.example.instagr.common.task
+import com.example.instagr.common.toUnit
 import com.example.instagr.data.UsersRepository
+import com.example.instagr.data.common.map
+import com.example.instagr.data.firebase.common.*
 import com.example.instagr.models.User
-import com.example.instagr.utils.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
@@ -24,7 +23,7 @@ class FirebaseUsersRepository : UsersRepository {
         if (newUser.email != currentUser.email) updatesMap["email"] = newUser.email
         if (newUser.phone != currentUser.phone) updatesMap["phone"] = newUser.phone
 
-        return database.child("users").child(currentUid()!!).updateChildren(updatesMap).toUnit()
+        return database.child("users").child(currentUid()).updateChildren(updatesMap).toUnit()
     }
 
     override fun updateEmail(currentEmail: String, newEmail: String, password: String): Task<Unit> {
@@ -42,7 +41,7 @@ class FirebaseUsersRepository : UsersRepository {
 
     override fun uploadUserPhoto(localImage: Uri): Task<Uri> =
         task { taskSource ->
-            val ref = storage.child("users/${currentUid()!!}/photo")
+            val ref = storage.child("users/${currentUid()}/photo")
             ref.putFile(localImage).addOnSuccessListener {
                 ref.downloadUrl.addOnCompleteListener {
                     taskSource.setResult(it.result!!)
@@ -52,11 +51,11 @@ class FirebaseUsersRepository : UsersRepository {
 
 
     override fun updateUserPhoto(downloadUrl: Uri?): Task<Unit> =
-        database.child("users/${currentUid()!!}/photo").setValue(downloadUrl.toString()).toUnit()
+        database.child("users/${currentUid()}/photo").setValue(downloadUrl.toString()).toUnit()
 
 
     override fun getUser(): LiveData<User> =
-        database.child("users").child(currentUid()!!).liveData().map {
+        database.child("users").child(currentUid()).liveData().map {
             it.asUser()!!
         }
 
