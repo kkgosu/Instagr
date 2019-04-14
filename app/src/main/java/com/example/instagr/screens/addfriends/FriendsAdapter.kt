@@ -52,7 +52,6 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
 
     override fun getItemCount() = mUsers.size
 
-
     fun update(users: List<User>, follows: Map<String, Boolean>) {
         val diffResult = DiffUtil.calculateDiff(SimpleCallback(mUsers, users) { it.uid})
         mUsers = users
