@@ -7,12 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.instagr.R
 import com.example.instagr.models.User
-import com.example.instagr.screens.common.BaseActivity
-import com.example.instagr.screens.common.loadUserPhoto
-import com.example.instagr.screens.common.showToast
-import com.example.instagr.screens.common.toStringOrNull
-import com.example.instagr.screens.common.CameraHelper
-import com.example.instagr.screens.common.PasswordDialog
+import com.example.instagr.screens.common.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 
@@ -37,20 +32,21 @@ class EditProfileActivity : BaseActivity(), PasswordDialog.Listener {
         save_image.setOnClickListener { updateProfile() }
         cameraHelper = CameraHelper(this)
 
-        mViewModel = initViewModel()
-        mViewModel.user.observe(this, Observer {
-            it.let {
-                mUser = it!!
-                name_input.setText(mUser.name)
-                username_input.setText(mUser.username)
-                bio_input.setText(mUser.bio)
-                website_input.setText(mUser.website)
-                email_input.setText(mUser.email)
-                phone_input.setText(mUser.phone?.toString())
-                profile_image.loadUserPhoto(mUser.photo)
-            }
-        })
-
+        setupAuthGuard {
+            mViewModel = initViewModel()
+            mViewModel.user.observe(this, Observer {
+                it.let {
+                    mUser = it!!
+                    name_input.setText(mUser.name)
+                    username_input.setText(mUser.username)
+                    bio_input.setText(mUser.bio)
+                    website_input.setText(mUser.website)
+                    email_input.setText(mUser.email)
+                    phone_input.setText(mUser.phone?.toString())
+                    profile_image.loadUserPhoto(mUser.photo)
+                }
+            })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

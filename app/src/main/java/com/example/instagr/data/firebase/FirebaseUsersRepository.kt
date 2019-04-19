@@ -14,7 +14,13 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 
 class FirebaseUsersRepository : UsersRepository {
-    override fun updateUserPorile(currentUser: User, newUser: User): Task<Unit> {
+    override fun getImages(uid: String): LiveData<List<String>> =
+        FirebaseLiveData(database.child("images").child(uid)).map {
+            it.children.map { it.getValue(String::class.java)!! }
+        }
+
+
+    override fun updateUserProfile(currentUser: User, newUser: User): Task<Unit> {
         val updatesMap = mutableMapOf<String, Any?>()
         if (newUser.name != currentUser.name) updatesMap["name"] = newUser.name
         if (newUser.username != currentUser.username) updatesMap["username"] = newUser.username

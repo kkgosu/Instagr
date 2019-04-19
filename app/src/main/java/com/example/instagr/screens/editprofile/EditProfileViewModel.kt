@@ -22,7 +22,7 @@ class EditProfileViewModel(private val onFailureListener: OnFailureListener,
             .addOnFailureListener(onFailureListener)
 
     fun updateProfile(currentUser: User, newUser: User): Task<Unit> =
-        usersRepo.updateUserPorile(currentUser = currentUser, newUser = newUser)
+        usersRepo.updateUserProfile(currentUser = currentUser, newUser = newUser)
             .addOnFailureListener(onFailureListener)
 
 

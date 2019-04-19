@@ -10,11 +10,12 @@ interface UsersRepository {
     fun uploadUserPhoto(localImage: Uri): Task<Uri>
     fun updateUserPhoto(downloadUrl: Uri?): Task<Unit>
     fun updateEmail(currentEmail: String, newEmail: String, password: String): Task<Unit>
-    fun updateUserPorile(currentUser: User, newUser: User): Task<Unit>
+    fun updateUserProfile(currentUser: User, newUser: User): Task<Unit>
     fun getUsers(): LiveData<List<User>>
     fun currentUid(): String
     fun addFollow(fromUid: String, toUid: String): Task<Unit>
     fun deleteFollow(fromUid: String, toUid: String): Task<Unit>
     fun addFollowers(fromUid: String, toUid: String): Task<Unit>
     fun deleteFollowers(fromUid: String, toUid: String): Task<Unit>
+    fun getImages(uid: String): LiveData<List<String>>
 }

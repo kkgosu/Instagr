@@ -1,34 +1,26 @@
 package com.example.instagr.screens
 
-import android.content.Context
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.instagr.R
-import com.example.instagr.data.firebase.common.asUser
 import com.example.instagr.screens.addfriends.AddFriendsActivity
 import com.example.instagr.screens.editprofile.EditProfileActivity
-import com.example.instagr.models.User
-import com.example.instagr.screens.common.BaseActivity
-import com.example.instagr.screens.common.loadImage
-import com.example.instagr.screens.common.loadUserPhoto
-import com.example.instagr.data.firebase.common.FirebaseHelper
-import com.example.instagr.common.ValueEventListenerAdapter
-import com.example.instagr.screens.common.setupBottomNavigation
+import com.example.instagr.screens.common.*
 import com.example.instagr.screens.profilesettings.ProfileSettingsActivity
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity() {
+    private lateinit var mAdapter: ImagesAdapter
     private val TAG = "ProfileActivity"
-    private lateinit var mFirebaseHelper: FirebaseHelper
-
-    private lateinit var mUser: User
+    private lateinit var mViewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,26 +41,36 @@ class ProfileActivity : BaseActivity() {
             val intent = Intent(this, AddFriendsActivity::class.java)
             startActivity(intent)
         }
-
-        mFirebaseHelper = FirebaseHelper(this)
-        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            mUser = it.asUser()!!
-            profile_image.loadUserPhoto(mUser.photo)
-            username_text.text = mUser.username
-        })
-
         images_recycler.layoutManager = GridLayoutManager(this, 3)
-        mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
-            .addValueEventListener(ValueEventListenerAdapter {
-                val images = it.children.map { it.getValue(String::class.java)!! }
-                images_recycler.adapter = ImagesAdapter(images + images + images)
-            })
+        mAdapter = ImagesAdapter()
+        images_recycler.adapter = mAdapter
+
+
+        setupAuthGuard {uid ->
+            mViewModel = initViewModel()
+            mViewModel.init(uid)
+            mViewModel.user.observe(this, Observer { it?.let {user ->
+                profile_image.loadUserPhoto(user.photo)
+                username_text.text = user.username
+            } })
+            mViewModel.images.observe(this, Observer { it?.let {images ->
+                mAdapter.updateImages(images)
+            }})
+        }
+
     }
 }
 
-class ImagesAdapter(private val images: List<String>) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter: RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
     class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
+    private var images = listOf<String>()
+
+    fun updateImages(newImages: List<String>) {
+        val diffResult = DiffUtil.calculateDiff(SimpleCallback(images,newImages) {it})
+        this.images = newImages
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val image = LayoutInflater.from(parent.context)
@@ -82,11 +84,4 @@ class ImagesAdapter(private val images: List<String>) : RecyclerView.Adapter<Ima
     }
 
     override fun getItemCount(): Int = images.size
-
-}
-
-class SquareImageView(context: Context, attrs: AttributeSet) : ImageView(context, attrs) {
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, widthMeasureSpec)
-    }
 }

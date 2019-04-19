@@ -12,6 +12,10 @@ class CommonViewModel : ViewModel(), OnFailureListener {
     val errorMessage: LiveData<String> = _errorMessage
 
     override fun onFailure(p0: Exception) {
-        _errorMessage.value = p0.message
+        setErrorMessage(p0.message)
+    }
+
+    fun setErrorMessage(message: String?) {
+        message?.let { _errorMessage.value = it }
     }
 }
