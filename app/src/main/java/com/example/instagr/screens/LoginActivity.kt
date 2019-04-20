@@ -10,14 +10,12 @@ import com.example.instagr.screens.common.BaseActivity
 import com.example.instagr.screens.common.coordinateBtnAndInputs
 import com.example.instagr.screens.common.setupAuthGuard
 import com.example.instagr.screens.home.HomeActivity
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
 class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnClickListener {
 
-    private lateinit var mAuth: FirebaseAuth
     private lateinit var mViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +37,6 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnCl
             mViewModel.goToRegisterScreen.observe(this, Observer {
                 startActivity(Intent(this, RegisterActivity::class.java))
             })
-            mAuth = FirebaseAuth.getInstance()
-
         }
     }
 
