@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.likes
 
 import android.os.Bundle
 import android.util.Log
@@ -7,18 +7,17 @@ import com.example.instagr.screens.common.BaseActivity
 import com.example.instagr.screens.common.setupAuthGuard
 import com.example.instagr.screens.common.setupBottomNavigation
 
-class SearchActivity : BaseActivity() {
+class LikesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setupBottomNavigation(1)
+        setupBottomNavigation(3)
         Log.d(TAG, "onCreate: ")
-        setupAuthGuard {
 
-        }
+        setupAuthGuard { }
     }
 
     companion object {
-        const val TAG = "SearchActivity"
+        const val TAG = "LikesActivity"
     }
 }

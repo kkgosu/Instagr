@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.share
 
 import android.arch.lifecycle.ViewModel
 import android.net.Uri

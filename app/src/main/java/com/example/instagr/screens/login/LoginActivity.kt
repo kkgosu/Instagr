@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.login
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.example.instagr.R
+import com.example.instagr.screens.register.RegisterActivity
 import com.example.instagr.screens.common.BaseActivity
 import com.example.instagr.screens.common.coordinateBtnAndInputs
 import com.example.instagr.screens.common.setupAuthGuard

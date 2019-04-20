@@ -8,10 +8,10 @@ import com.example.instagr.screens.addfriends.AddFriendsViewModel
 import com.example.instagr.data.firebase.FirebaseFeedPostsRepository
 import com.example.instagr.screens.editprofile.EditProfileViewModel
 import com.example.instagr.data.firebase.FirebaseUsersRepository
-import com.example.instagr.screens.LoginViewModel
-import com.example.instagr.screens.ProfileViewModel
-import com.example.instagr.screens.RegisterViewModel
-import com.example.instagr.screens.ShareViewModel
+import com.example.instagr.screens.login.LoginViewModel
+import com.example.instagr.screens.profile.ProfileViewModel
+import com.example.instagr.screens.register.RegisterViewModel
+import com.example.instagr.screens.share.ShareViewModel
 import com.example.instagr.screens.home.HomeViewModel
 import com.example.instagr.screens.profilesettings.ProfileSettingsViewModel
 import com.google.android.gms.tasks.OnFailureListener

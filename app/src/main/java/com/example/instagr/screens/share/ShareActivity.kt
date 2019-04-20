@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.share
 
 import android.app.Activity
 import android.arch.lifecycle.Observer

@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.register
 
 import android.app.Application
 import android.arch.lifecycle.LiveData

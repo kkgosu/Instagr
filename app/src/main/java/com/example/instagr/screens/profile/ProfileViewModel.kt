@@ -1,4 +1,4 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.profile
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel

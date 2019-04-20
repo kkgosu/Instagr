@@ -1,8 +1,7 @@
-package com.example.instagr.screens
+package com.example.instagr.screens.login
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.instagr.R
 import com.example.instagr.common.AuthManager
