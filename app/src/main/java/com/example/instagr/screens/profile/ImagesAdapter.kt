@@ -1,7 +1,7 @@
 package com.example.instagr.screens.profile
 
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,9 +9,9 @@ import com.example.instagr.R
 import com.example.instagr.screens.common.SimpleCallback
 import com.example.instagr.screens.common.loadImage
 
-class ImagesAdapter: RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter: androidx.recyclerview.widget.RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
-    class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
+    class ViewHolder(val image: ImageView) : androidx.recyclerview.widget.RecyclerView.ViewHolder(image)
     private var images = listOf<String>()
 
     fun updateImages(newImages: List<String>) {

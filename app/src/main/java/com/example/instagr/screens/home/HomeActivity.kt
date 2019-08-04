@@ -1,10 +1,11 @@
 package com.example.instagr.screens.home
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import com.example.instagr.R
+import com.example.instagr.screens.comments.CommentsActivity
 import com.example.instagr.screens.common.*
 import com.example.instagr.screens.common.setupBottomNavigation
 import kotlinx.android.synthetic.main.activity_home.*
@@ -21,7 +22,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener {
         Log.d(TAG, "onCreate: ")
         mAdapter = FeedAdapter(this)
         feed_recycler.adapter = mAdapter
-        feed_recycler.layoutManager = LinearLayoutManager(this)
+        feed_recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
         setupAuthGuard { uid ->
             mViewModel = initViewModel()
@@ -29,6 +30,11 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener {
             mViewModel.feedPosts.observe(this, Observer {
                 it?.let {
                     mAdapter.updatePosts(it)
+                }
+            })
+            mViewModel.goToCommentsScreen.observe(this, Observer {
+                it?.let { postId ->
+                    CommentsActivity.start(this, postId)
                 }
             })
         }
@@ -46,6 +52,10 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener {
                 }
             })
         }
+    }
+
+    override fun openComments(postId: String) {
+        mViewModel.openComments(postId)
     }
 
     companion object {

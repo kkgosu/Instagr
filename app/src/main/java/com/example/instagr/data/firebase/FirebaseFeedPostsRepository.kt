@@ -1,21 +1,28 @@
 package com.example.instagr.data.firebase
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.example.instagr.common.task
 import com.example.instagr.common.toUnit
 import com.example.instagr.data.FeedPostsRepository
-import com.example.instagr.data.firebase.common.database
 import com.example.instagr.common.TaskSourceOnCompleteListener
 import com.example.instagr.common.ValueEventListenerAdapter
 import com.example.instagr.data.FeedPostLike
 import com.example.instagr.data.common.map
-import com.example.instagr.data.firebase.common.FirebaseLiveData
-import com.example.instagr.data.firebase.common.asFeedPost
-import com.example.instagr.data.firebase.common.setValueTrueOrRemove
+import com.example.instagr.data.firebase.common.*
+import com.example.instagr.models.Comment
 import com.example.instagr.models.FeedPost
 import com.google.android.gms.tasks.Task
 
 class FirebaseFeedPostsRepository : FeedPostsRepository {
+    override fun createComment(postId: String, comment: Comment): Task<Unit> =
+        database.child("comments").child(postId).push().setValue(comment).toUnit()
+
+    override fun getComments(postId: String): LiveData<List<Comment>> =
+        FirebaseLiveData(database.child("comments").child(postId)).map {
+            it.children.map { it.asComment()!! }
+        }
+
+
     override fun getLikes(postId: String): LiveData<List<FeedPostLike>> =
         FirebaseLiveData(database.child("likes").child(postId)).map {
             it.children.map { FeedPostLike(it.key) }

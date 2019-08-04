@@ -1,6 +1,7 @@
 package com.example.instagr.data.firebase.common
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
+import com.example.instagr.models.Comment
 import com.example.instagr.models.FeedPost
 import com.example.instagr.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +15,9 @@ fun DataSnapshot.asUser(): User? = getValue(User::class.java)?.copy(uid = key!!)
 
 fun DataSnapshot.asFeedPost(): FeedPost? =
     getValue(FeedPost::class.java)?.copy(id = key!!)
+
+fun DataSnapshot.asComment() : Comment? =
+    getValue(Comment::class.java)?.copy(id = key!!)
 
 fun DatabaseReference.setValueTrueOrRemove(value: Boolean) =
     if (value) setValue(true) else removeValue()

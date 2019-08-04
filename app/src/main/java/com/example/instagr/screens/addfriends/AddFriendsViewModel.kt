@@ -1,19 +1,20 @@
 package com.example.instagr.screens.addfriends
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.instagr.data.FeedPostsRepository
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.data.common.map
 import com.example.instagr.models.User
+import com.example.instagr.screens.common.BaseViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 
-class AddFriendsViewModel(private val onFailureListener: OnFailureListener,
+class AddFriendsViewModel(onFailureListener: OnFailureListener,
                           private val usersRepos: UsersRepository,
-                          private val feedPostsRepo: FeedPostsRepository) : ViewModel() {
+                          private val feedPostsRepo: FeedPostsRepository) : BaseViewModel(onFailureListener) {
 
     private val currentUid = FirebaseAuth.getInstance().currentUser!!.uid
 

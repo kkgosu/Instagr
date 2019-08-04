@@ -6,16 +6,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollY="2000dp">
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/toolbar"
                 app:contentInsetStart="0dp">
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -42,9 +42,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:src="@drawable/ic_check"/>
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
@@ -162,5 +162,5 @@
                   app:layout_constraintStart_toStartOf="@id/name_label"
                   app:layout_constraintTop_toBottomOf="@id/phone_label"
                   android:inputType="phone"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

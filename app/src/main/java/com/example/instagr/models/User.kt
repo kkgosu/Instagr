@@ -12,5 +12,5 @@ data class User(
     val bio: String? = null,
     val phone: Long? = null,
     val photo: String? = null,
-    @Exclude val uid: String = ""
+    @get:Exclude val uid: String = ""
 )

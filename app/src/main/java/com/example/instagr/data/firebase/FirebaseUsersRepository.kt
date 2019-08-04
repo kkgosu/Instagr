@@ -1,6 +1,6 @@
 package com.example.instagr.data.firebase
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.net.Uri
 import com.example.instagr.common.task
 import com.example.instagr.common.toUnit
@@ -29,8 +29,8 @@ class FirebaseUsersRepository : UsersRepository {
                 .child(imageUri.lastPathSegment!!)
             ref.putFile(imageUri).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    ref.downloadUrl.addOnSuccessListener {
-                        taskSource.setResult(it)
+                    ref.downloadUrl.addOnCompleteListener {
+                        taskSource.setResult(it.result)
                     }
                 } else {
                     taskSource.setException(it.exception!!)

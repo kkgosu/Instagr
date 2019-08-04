@@ -1,9 +1,9 @@
 package com.example.instagr.screens.profile
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import android.util.Log
 import com.example.instagr.R
 import com.example.instagr.screens.addfriends.AddFriendsActivity
@@ -36,7 +36,7 @@ class ProfileActivity : BaseActivity() {
             val intent = Intent(this, AddFriendsActivity::class.java)
             startActivity(intent)
         }
-        images_recycler.layoutManager = GridLayoutManager(this, 3)
+        images_recycler.layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 3)
         mAdapter = ImagesAdapter()
         images_recycler.adapter = mAdapter
 

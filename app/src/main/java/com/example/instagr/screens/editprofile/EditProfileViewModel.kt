@@ -1,15 +1,16 @@
 package com.example.instagr.screens.editprofile
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import android.net.Uri
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.models.User
+import com.example.instagr.screens.common.BaseViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 
-class EditProfileViewModel(private val onFailureListener: OnFailureListener,
-                           private val usersRepo: UsersRepository) : ViewModel() {
+class EditProfileViewModel(onFailureListener: OnFailureListener,
+                           private val usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
     val user: LiveData<User> = usersRepo.getUser()
 
     fun uploadAndSetUserPhoto(localImage: Uri): Task<Unit> =

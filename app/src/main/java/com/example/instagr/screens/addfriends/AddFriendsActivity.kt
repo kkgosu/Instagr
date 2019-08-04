@@ -1,8 +1,8 @@
 package com.example.instagr.screens.addfriends
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagr.R
 import com.example.instagr.screens.common.BaseActivity
 import com.example.instagr.models.User

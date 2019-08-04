@@ -1,20 +1,24 @@
 package com.example.instagr.screens.home
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import com.example.instagr.common.SingleLiveEvent
 import com.example.instagr.data.FeedPostsRepository
 import com.example.instagr.data.common.map
 import com.example.instagr.models.FeedPost
+import com.example.instagr.screens.common.BaseViewModel
 import com.google.android.gms.tasks.OnFailureListener
 
 class HomeViewModel(
-    private val onFailureListener: OnFailureListener,
-    private val feedPostsRepo: FeedPostsRepository
-) : ViewModel() {
+    private val feedPostsRepo: FeedPostsRepository,
+    onFailureListener: OnFailureListener
+) : BaseViewModel(onFailureListener) {
 
     lateinit var uid: String
     lateinit var feedPosts: LiveData<List<FeedPost>>
     private var loadedLikes = mapOf<String, LiveData<FeedPostLikes>>()
+    private val _goToCommentsScreen = SingleLiveEvent<String>()
+    val goToCommentsScreen = _goToCommentsScreen
 
     fun init(uid: String) {
         this.uid = uid
@@ -43,5 +47,9 @@ class HomeViewModel(
         } else {
             existingLoadedLikes
         }
+    }
+
+    fun openComments(postId: String) {
+        _goToCommentsScreen.value = postId
     }
 }

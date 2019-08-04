@@ -1,25 +1,16 @@
 package com.example.instagr.screens.home
 
-import android.graphics.Typeface
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.TextPaint
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.example.instagr.R
 import com.example.instagr.models.FeedPost
 import com.example.instagr.screens.common.SimpleCallback
 import com.example.instagr.screens.common.loadImage
 import com.example.instagr.screens.common.loadUserPhoto
-import com.example.instagr.screens.common.showToast
+import com.example.instagr.screens.common.setCaptionText
 import kotlinx.android.synthetic.main.feed_post.view.*
 
 class FeedAdapter(private val listener: Listener) :
@@ -28,6 +19,7 @@ class FeedAdapter(private val listener: Listener) :
     interface Listener {
         fun toggleLike(postId: String)
         fun loadLikes(postId: String, position: Int)
+        fun openComments(postId: String)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -69,29 +61,11 @@ class FeedAdapter(private val listener: Listener) :
                 if (likes.likedByUser) R.drawable.ic_likes_active
                 else R.drawable.ic_likes_border
             )
+            comments_image.setOnClickListener {
+                listener.openComments(post.id)
+            }
             listener.loadLikes(post.id, position)
         }
-    }
-
-    private fun TextView.setCaptionText(username: String, caption: String) {
-        val usernameSpannable = SpannableString(username)
-        usernameSpannable.setSpan(
-            StyleSpan(Typeface.BOLD), 0, usernameSpannable.length
-            , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        usernameSpannable.setSpan(object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                widget.context.showToast(context.getString(R.string.username_is_clicked))
-            }
-
-            override fun updateDrawState(ds: TextPaint) {}
-        }, 0, usernameSpannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        text = SpannableStringBuilder()
-            .append(usernameSpannable)
-            .append(" ")
-            .append(caption)
-        movementMethod = LinkMovementMethod.getInstance()
     }
 
     override fun getItemCount(): Int = posts.size

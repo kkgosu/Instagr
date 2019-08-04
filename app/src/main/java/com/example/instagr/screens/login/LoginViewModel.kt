@@ -1,11 +1,12 @@
 package com.example.instagr.screens.login
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.instagr.R
 import com.example.instagr.common.AuthManager
 import com.example.instagr.common.SingleLiveEvent
+import com.example.instagr.screens.common.BaseViewModel
 import com.example.instagr.screens.common.CommonViewModel
 import com.google.android.gms.tasks.OnFailureListener
 
@@ -13,8 +14,8 @@ class LoginViewModel(
     private val authManager: AuthManager,
     private val app: Application,
     private val commonViewModel: CommonViewModel,
-    private val onFailureListener: OnFailureListener
-) : ViewModel() {
+    onFailureListener: OnFailureListener
+) : BaseViewModel(onFailureListener) {
 
     private val _goToHomeScreen = SingleLiveEvent<Unit>()
     val goToHomeScreen: LiveData<Unit> = _goToHomeScreen

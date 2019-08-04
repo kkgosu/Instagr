@@ -12,8 +12,8 @@ data class FeedPost(
     val comments: List<Comment> = emptyList(),
     val timestamp: Any = ServerValue.TIMESTAMP,
     val photo: String? = null,
-    @Exclude val id: String = "",
-    @Exclude val commentsCount: Int = 0
+    @get:Exclude val id: String = "",
+    @get:Exclude val commentsCount: Int = 0
 ) {
     fun timestampDate(): Date = Date(timestamp as Long)
 }

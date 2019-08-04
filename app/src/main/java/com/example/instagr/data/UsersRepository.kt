@@ -1,6 +1,6 @@
 package com.example.instagr.data
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.net.Uri
 import com.example.instagr.models.FeedPost
 import com.example.instagr.models.User

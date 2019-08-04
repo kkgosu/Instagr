@@ -1,17 +1,19 @@
 package com.example.instagr.screens.register
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
 import com.example.instagr.R
 import com.example.instagr.common.SingleLiveEvent
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.models.User
+import com.example.instagr.screens.common.BaseViewModel
 import com.example.instagr.screens.common.CommonViewModel
+import com.google.android.gms.tasks.OnFailureListener
 
 class RegisterViewModel(private val commonViewModel: CommonViewModel,
                         private val app: Application,
-                        private val usersRepo: UsersRepository): ViewModel() {
+                        private val usersRepo: UsersRepository,
+                        onFailureListener: OnFailureListener): BaseViewModel(onFailureListener) {
 
     private val _goToNamePassScreen = SingleLiveEvent<Unit>()
     private val _goToHomeScreen = SingleLiveEvent<Unit>()
@@ -31,7 +33,7 @@ class RegisterViewModel(private val commonViewModel: CommonViewModel,
                 } else {
                     commonViewModel.setErrorMessage(app.getString(R.string.this_email_already_exists))
                 }
-            }
+            }.addOnFailureListener(onFailureListener)
         } else {
             commonViewModel.setErrorMessage(app.getString(R.string.please_enter_an_email))
         }
@@ -43,7 +45,7 @@ class RegisterViewModel(private val commonViewModel: CommonViewModel,
             if (localEmail != null) {
                 usersRepo.createUser(mkUser(fullName, localEmail), password).addOnSuccessListener {
                     _goToHomeScreen.call()
-                }
+                }.addOnFailureListener(onFailureListener)
             } else {
                 commonViewModel.setErrorMessage(app.getString(R.string.please_enter_an_email))
                 _goBackToEmailScreen.call()

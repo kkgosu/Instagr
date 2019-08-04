@@ -1,7 +1,7 @@
 package com.example.instagr.screens.addfriends
 
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.example.instagr.screens.common.SimpleCallback
 
 import kotlinx.android.synthetic.main.add_friends_item.view.*
 
-class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
+class FriendsAdapter(private val listener: Listener) : androidx.recyclerview.widget.RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
     private var mUsers = listOf<User>()
     private var mFollows = mapOf<String, Boolean>()
     private var mPositions = mapOf<String, Int>()
@@ -22,7 +22,7 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
         fun unfollow(uid: String)
     }
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class ViewHolder(val view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val view =

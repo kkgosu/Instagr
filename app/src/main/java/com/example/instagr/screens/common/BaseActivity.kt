@@ -1,12 +1,12 @@
 package com.example.instagr.screens.common
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.instagr.screens.login.LoginActivity
 
 abstract class BaseActivity() : AppCompatActivity() {
@@ -24,7 +24,7 @@ abstract class BaseActivity() : AppCompatActivity() {
         })
     }
 
-    protected inline fun <reified T : ViewModel> initViewModel(): T =
+    protected inline fun <reified T : BaseViewModel> initViewModel(): T =
         ViewModelProviders.of(this, ViewModelFactory(application, commonViewModel, commonViewModel))
             .get(T::class.java)
 
