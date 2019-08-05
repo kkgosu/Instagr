@@ -26,9 +26,14 @@ class ShareActivity : BaseActivity() {
 
         setupAuthGuard {
             mViewModel = initViewModel()
-            mViewModel.user.observe(this, Observer {it?.let {
-                mUser = it
-            }})
+            mViewModel.user.observe(this, Observer {
+                it?.let {
+                    mUser = it
+                }
+            })
+            mViewModel.shareCompletedEvent.observe(this, Observer {
+                finish()
+            })
 
             mCamera = CameraHelper(this)
             mCamera.takeCameraPicture()

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagr.R
 import com.example.instagr.models.User
 import com.example.instagr.screens.common.BaseActivity
+import com.example.instagr.screens.common.loadUserPhoto
 import com.example.instagr.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_comments.*
 
@@ -32,6 +33,7 @@ class CommentsActivity : BaseActivity() {
             viewModel.user.observe(this, Observer {
                 it?.let {
                     mUser = it
+                    user_photo.loadUserPhoto(mUser.photo)
                 }
             })
             viewModel.comments.observe(this, Observer {

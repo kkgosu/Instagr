@@ -3,6 +3,7 @@ package com.example.instagr.common.firebase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.instagr.models.Comment
+import com.example.instagr.models.FeedPost
 
 object EventBus {
 
@@ -18,5 +19,6 @@ sealed class Event {
     data class CreateComment(val postId: String, val comment: Comment) : Event()
     data class CreateLike(val postId: String, val uid: String) : Event()
     data class CreateFollow(val fromUid: String, val toUid: String) : Event()
+    data class CreateFeedPost(val post: FeedPost) : Event()
 
 }

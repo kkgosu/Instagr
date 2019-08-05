@@ -2,6 +2,7 @@ package com.example.instagr.screens.notifications
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.instagr.common.BaseEventListener
 import com.example.instagr.common.firebase.Event
 import com.example.instagr.common.firebase.EventBus
 import com.example.instagr.data.FeedPostsRepository
@@ -15,14 +16,9 @@ import com.example.instagr.models.User
 
 class NotificationsCreator(private val notificationsRepo: NotificationsRepository,
                            private val usersRepo: UsersRepository,
-                           private val feedPostsRepo: FeedPostsRepository) : LifecycleOwner {
-
-    private val lifecycleRegistry = LifecycleRegistry(this)
+                           private val feedPostsRepo: FeedPostsRepository) : BaseEventListener() {
 
     init {
-        lifecycleRegistry.markState(Lifecycle.State.CREATED)
-        lifecycleRegistry.markState(Lifecycle.State.STARTED)
-
         EventBus.events.observe(this, Observer {
             it?.let { event ->
                 when (event) {
@@ -76,8 +72,6 @@ class NotificationsCreator(private val notificationsRepo: NotificationsRepositor
     }
 
     private fun getUser(uid: String): LiveData<User> = usersRepo.getUser(uid)
-
-    override fun getLifecycle(): Lifecycle = lifecycleRegistry
 
     companion object {
         const val TAG = "NotificationsCreator"

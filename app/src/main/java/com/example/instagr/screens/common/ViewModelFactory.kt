@@ -13,6 +13,7 @@ import com.example.instagr.screens.share.ShareViewModel
 import com.example.instagr.screens.home.HomeViewModel
 import com.example.instagr.screens.notifications.NotificationsViewModel
 import com.example.instagr.screens.profilesettings.ProfileSettingsViewModel
+import com.example.instagr.screens.search.SearchViewModel
 import com.google.android.gms.tasks.OnFailureListener
 
 @Suppress("UNCHECKED_CAST")
@@ -27,6 +28,7 @@ class ViewModelFactory(
         val usersRepos = app.usersRepo
         val authManager = app.authManager
         val notificationsRepo = app.notificationsRepo
+        val searchRepo = app.searchRepo
 
         if (modelClass.isAssignableFrom(AddFriendsViewModel::class.java)) {
             return AddFriendsViewModel(onFailureListener, usersRepos, feedPostsRepo) as T
@@ -48,6 +50,8 @@ class ViewModelFactory(
             return CommentsViewModel(feedPostsRepo, usersRepos, onFailureListener) as T
         } else if (modelClass.isAssignableFrom(NotificationsViewModel::class.java)) {
             return NotificationsViewModel(notificationsRepo, onFailureListener) as T
+        } else if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
+            return SearchViewModel(searchRepo, onFailureListener) as T
         } else {
             error("Unknown View Model class $modelClass")
         }

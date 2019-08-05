@@ -3,7 +3,6 @@ package com.example.instagr.screens.profile
 import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import android.util.Log
 import com.example.instagr.R
 import com.example.instagr.screens.addfriends.AddFriendsActivity
@@ -41,16 +40,24 @@ class ProfileActivity : BaseActivity() {
         images_recycler.adapter = mAdapter
 
 
-        setupAuthGuard {uid ->
+        setupAuthGuard { uid ->
             mViewModel = initViewModel()
             mViewModel.init(uid)
-            mViewModel.user.observe(this, Observer { it?.let {user ->
-                profile_image.loadUserPhoto(user.photo)
-                username_text.text = user.username
-            } })
-            mViewModel.images.observe(this, Observer { it?.let {images ->
-                mAdapter.updateImages(images)
-            }})
+            mViewModel.user.observe(this, Observer {
+                it?.let { user ->
+                    profile_image.loadUserPhoto(user.photo)
+                    username_text.text = user.username
+                    followers_count_text.text = it.followers.size.toString()
+                    following_count_text.text = it.follows.size.toString()
+                }
+            })
+            mViewModel.images.observe(this, Observer {
+                it?.let { images ->
+                    mAdapter.updateImages(images)
+                    posts_count_text.text = images.size.toString()
+                }
+            })
+
         }
 
     }

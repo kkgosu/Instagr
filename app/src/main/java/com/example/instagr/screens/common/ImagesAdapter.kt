@@ -1,4 +1,4 @@
-package com.example.instagr.screens.profile
+package com.example.instagr.screens.common
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.instagr.R
-import com.example.instagr.screens.common.SimpleCallback
-import com.example.instagr.screens.common.loadImage
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
