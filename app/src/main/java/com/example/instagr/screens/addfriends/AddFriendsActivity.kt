@@ -9,8 +9,7 @@ import com.example.instagr.models.User
 import com.example.instagr.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_add_friends.*
 
-class AddFriendsActivity : BaseActivity(),
-    FriendsAdapter.Listener {
+class AddFriendsActivity : BaseActivity(), FriendsAdapter.Listener {
 
     private lateinit var mUser: User
     private lateinit var mAdapter: FriendsAdapter
@@ -52,8 +51,7 @@ class AddFriendsActivity : BaseActivity(),
     }
 
     private fun setFollow(uid: String, follow: Boolean, onSuccess: () -> Unit) {
-        mViewmodel.setFollow(mUser.uid, uid, follow)
-            .addOnSuccessListener { onSuccess() }
+        mViewmodel.setFollow(mUser.uid, uid, follow).addOnSuccessListener { onSuccess() }
     }
 
     companion object {

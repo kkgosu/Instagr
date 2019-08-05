@@ -9,17 +9,15 @@ import com.example.instagr.R
 import com.example.instagr.screens.common.SimpleCallback
 import com.example.instagr.screens.common.loadImage
 
-class ImagesAdapter: androidx.recyclerview.widget.RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
-    class ViewHolder(val image: ImageView) : androidx.recyclerview.widget.RecyclerView.ViewHolder(image)
+    class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
+
     private var images = listOf<String>()
 
     fun updateImages(newImages: List<String>) {
         val diffResult = DiffUtil.calculateDiff(
-            SimpleCallback(
-                images,
-                newImages
-            ) { it })
+            SimpleCallback(images, newImages) { it })
         this.images = newImages
         diffResult.dispatchUpdatesTo(this)
     }

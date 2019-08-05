@@ -8,7 +8,7 @@ import android.content.Intent
 import android.util.Log
 import com.example.instagr.R
 import com.example.instagr.screens.home.HomeActivity
-import com.example.instagr.screens.likes.LikesActivity
+import com.example.instagr.screens.notifications.NotificationsActivity
 import com.example.instagr.screens.profile.ProfileActivity
 import com.example.instagr.screens.search.SearchActivity
 import com.example.instagr.screens.share.ShareActivity
@@ -38,12 +38,12 @@ class InstagramBottomNavigation(
         bnv.setOnNavigationItemSelectedListener {
             val nextActivity =
                 when (it.itemId) {
-                    R.id.nav_item_home -> HomeActivity::class.java
-                    R.id.nav_item_search -> SearchActivity::class.java
-                    R.id.nav_item_share -> ShareActivity::class.java
-                    R.id.nav_item_likes -> LikesActivity::class.java
+                    R.id.nav_item_home    -> HomeActivity::class.java
+                    R.id.nav_item_search  -> SearchActivity::class.java
+                    R.id.nav_item_share   -> ShareActivity::class.java
+                    R.id.nav_item_likes   -> NotificationsActivity::class.java
                     R.id.nav_item_profile -> ProfileActivity::class.java
-                    else -> {
+                    else                  -> {
                         Log.e(BaseActivity.TAG, "unknown nav item clicked $it")
                         null
                     }

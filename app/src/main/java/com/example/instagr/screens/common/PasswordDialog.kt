@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.dialog_password.view.*
 class PasswordDialog : DialogFragment() {
 
     private lateinit var mListener: Listener
+
     interface Listener {
         fun onPasswordConfirm(password: String)
 

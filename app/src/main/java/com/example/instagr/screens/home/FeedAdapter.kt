@@ -72,10 +72,7 @@ class FeedAdapter(private val listener: Listener) :
 
     fun updatePosts(newPosts: List<FeedPost>) {
         val diffResult = DiffUtil.calculateDiff(
-            SimpleCallback(
-                this.posts,
-                newPosts
-            ) { it.id })
+            SimpleCallback(this.posts, newPosts) { it.id })
         this.posts = newPosts
         diffResult.dispatchUpdatesTo(this)
     }

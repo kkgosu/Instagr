@@ -39,6 +39,14 @@ fun ImageView.loadImage(image: String?) = ifNotDestroyed {
     GlideApp.with(this).load(image).centerCrop().into(this)
 }
 
+fun ImageView.loadImageOrHide(image: String?) =
+    if (image != null) {
+        visibility = View.VISIBLE
+        loadImage(image)
+    } else {
+        visibility = View.GONE
+    }
+
 fun TextView.setCaptionText(username: String, caption: String, date: Date? = null) {
     val usernameSpannable = SpannableString(username)
     usernameSpannable.setSpan(

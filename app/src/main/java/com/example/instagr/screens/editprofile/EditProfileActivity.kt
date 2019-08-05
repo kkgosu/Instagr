@@ -96,10 +96,10 @@ class EditProfileActivity : BaseActivity(), PasswordDialog.Listener {
 
     private fun validate(user: User): String? =
         when {
-            user.name.isEmpty() -> getString(R.string.please_enter_a_name)
+            user.name.isEmpty()     -> getString(R.string.please_enter_a_name)
             user.username.isEmpty() -> getString(R.string.please_enter_a_username)
-            user.email.isEmpty() -> getString(R.string.please_enter_an_email)
-            else -> null
+            user.email.isEmpty()    -> getString(R.string.please_enter_an_email)
+            else                    -> null
         }
 
 

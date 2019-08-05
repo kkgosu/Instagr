@@ -12,7 +12,7 @@ import com.example.instagr.screens.common.SimpleCallback
 
 import kotlinx.android.synthetic.main.add_friends_item.view.*
 
-class FriendsAdapter(private val listener: Listener) : androidx.recyclerview.widget.RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
+class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
     private var mUsers = listOf<User>()
     private var mFollows = mapOf<String, Boolean>()
     private var mPositions = mapOf<String, Int>()
@@ -53,7 +53,7 @@ class FriendsAdapter(private val listener: Listener) : androidx.recyclerview.wid
     override fun getItemCount() = mUsers.size
 
     fun update(users: List<User>, follows: Map<String, Boolean>) {
-        val diffResult = DiffUtil.calculateDiff(SimpleCallback(mUsers, users) { it.uid})
+        val diffResult = DiffUtil.calculateDiff(SimpleCallback(mUsers, users) { it.uid })
         mUsers = users
         mPositions = users.withIndex().map { (idx, user) -> user.uid to idx }.toMap()
         mFollows = follows

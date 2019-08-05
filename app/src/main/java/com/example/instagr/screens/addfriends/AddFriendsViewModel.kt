@@ -1,7 +1,6 @@
 package com.example.instagr.screens.addfriends
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.instagr.data.FeedPostsRepository
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.data.common.map
@@ -26,7 +25,7 @@ class AddFriendsViewModel(onFailureListener: OnFailureListener,
             userList.first() to otherUsersList
         }
 
-    fun setFollow(currentUid: String,uid: String, follow: Boolean): Task<Void> {
+    fun setFollow(currentUid: String, uid: String, follow: Boolean): Task<Void> {
         return (if (follow) {
             Tasks.whenAll(
                 usersRepos.addFollow(currentUid, uid),

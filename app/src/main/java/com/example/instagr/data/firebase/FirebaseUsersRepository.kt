@@ -2,17 +2,19 @@ package com.example.instagr.data.firebase
 
 import androidx.lifecycle.LiveData
 import android.net.Uri
+import com.example.instagr.common.firebase.Event
+import com.example.instagr.common.firebase.EventBus
 import com.example.instagr.common.task
 import com.example.instagr.common.toUnit
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.data.common.map
 import com.example.instagr.data.firebase.common.*
-import com.example.instagr.models.FeedPost
 import com.example.instagr.models.User
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 
 class FirebaseUsersRepository : UsersRepository {
 
@@ -92,8 +94,10 @@ class FirebaseUsersRepository : UsersRepository {
         database.child("users/${currentUid()}/photo").setValue(downloadUrl.toString()).toUnit()
 
 
-    override fun getUser(): LiveData<User> =
-        database.child("users").child(currentUid()).liveData().map {
+    override fun getUser(): LiveData<User> = getUser(currentUid())
+
+    override fun getUser(uid: String): LiveData<User> =
+        database.child("users").child(uid).liveData().map {
             it.asUser()!!
         }
 
@@ -105,6 +109,9 @@ class FirebaseUsersRepository : UsersRepository {
 
     override fun addFollow(fromUid: String, toUid: String): Task<Unit> =
         getFollows(fromUid, toUid).setValue(true).toUnit()
+            .addOnSuccessListener {
+                EventBus.publish(Event.CreateFollow(fromUid, toUid))
+            }
 
     override fun deleteFollow(fromUid: String, toUid: String): Task<Unit> =
         getFollows(fromUid, toUid).removeValue().toUnit()
@@ -122,5 +129,7 @@ class FirebaseUsersRepository : UsersRepository {
         .child("followers").child(fromUid)
 
     override fun currentUid() = FirebaseAuth.getInstance().currentUser!!.uid
+
+    private fun DataSnapshot.asUser(): User? = getValue(User::class.java)?.copy(uid = key!!)
 
 }

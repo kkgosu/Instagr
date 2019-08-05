@@ -26,7 +26,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val comment = comments[position]
-        with (holder.view) {
+        with(holder.view) {
             photo.loadUserPhoto(comment.photo)
             text.setCaptionText(comment.username, comment.text, comment.timestampDate())
         }

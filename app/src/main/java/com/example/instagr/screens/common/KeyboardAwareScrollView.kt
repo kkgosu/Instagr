@@ -8,8 +8,8 @@ import android.widget.ScrollView
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
-class KeyboardAwareScrollView(context: Context, attrs: AttributeSet) : ScrollView (context, attrs),
-    KeyboardVisibilityEventListener {
+class KeyboardAwareScrollView(context: Context, attrs: AttributeSet) : ScrollView(context, attrs),
+                                                                       KeyboardVisibilityEventListener {
     init {
         isFillViewport = true
         isVerticalScrollBarEnabled = false

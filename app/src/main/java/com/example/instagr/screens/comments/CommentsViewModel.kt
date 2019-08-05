@@ -10,7 +10,7 @@ import com.example.instagr.screens.common.BaseViewModel
 import com.google.android.gms.tasks.OnFailureListener
 
 class CommentsViewModel(private val feedPostsRepo: FeedPostsRepository,
-                        usersRepo : UsersRepository,
+                        usersRepo: UsersRepository,
                         onFailureListener: OnFailureListener) : BaseViewModel(onFailureListener) {
 
     private lateinit var postId: String
