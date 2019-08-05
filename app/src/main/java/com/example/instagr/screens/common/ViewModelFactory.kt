@@ -8,6 +8,7 @@ import com.example.instagr.screens.addfriends.AddFriendsViewModel
 import com.example.instagr.data.firebase.FirebaseFeedPostsRepository
 import com.example.instagr.screens.editprofile.EditProfileViewModel
 import com.example.instagr.data.firebase.FirebaseUsersRepository
+import com.example.instagr.screens.InstagramApp
 import com.example.instagr.screens.comments.CommentsViewModel
 import com.example.instagr.screens.login.LoginViewModel
 import com.example.instagr.screens.profile.ProfileViewModel
@@ -19,15 +20,15 @@ import com.google.android.gms.tasks.OnFailureListener
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(
-    private val app: Application,
+    private val app: InstagramApp,
     private val commonViewModel: CommonViewModel,
     private val onFailureListener: OnFailureListener
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        val feedPostsRepo by lazy { FirebaseFeedPostsRepository() }
-        val usersRepos by lazy { FirebaseUsersRepository() }
-        val authManager by lazy { FirebaseAuthManager() }
+        val feedPostsRepo = app.feedPostsRepo
+        val usersRepos = app.usersRepos
+        val authManager = app.authManager
 
         if (modelClass.isAssignableFrom(AddFriendsViewModel::class.java)) {
             return AddFriendsViewModel(onFailureListener, usersRepos, feedPostsRepo) as T
@@ -44,7 +45,7 @@ class ViewModelFactory(
         } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             return RegisterViewModel(commonViewModel, app, usersRepos, onFailureListener) as T
         } else if (modelClass.isAssignableFrom(ShareViewModel::class.java)) {
-            return ShareViewModel(usersRepos, onFailureListener) as T
+            return ShareViewModel(feedPostsRepo, usersRepos, onFailureListener) as T
         } else if (modelClass.isAssignableFrom(CommentsViewModel::class.java)) {
             return CommentsViewModel(feedPostsRepo, usersRepos, onFailureListener) as T
         } else {

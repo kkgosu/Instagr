@@ -10,6 +10,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+            android:name=".screens.InstagramApp"
             android:theme="@style/AppTheme">
         <activity android:name=".screens.home.HomeActivity">
             <intent-filter>

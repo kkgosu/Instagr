@@ -1,6 +1,7 @@
 package com.example.instagr.screens.share
 
 import android.net.Uri
+import com.example.instagr.data.FeedPostsRepository
 import com.example.instagr.data.UsersRepository
 import com.example.instagr.models.FeedPost
 import com.example.instagr.models.User
@@ -9,6 +10,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Tasks
 
 class ShareViewModel(
+    private val feedPostRepo: FeedPostsRepository,
     private val usersRepo: UsersRepository,
     onFailureListener: OnFailureListener
 ) : BaseViewModel(onFailureListener) {
@@ -19,7 +21,7 @@ class ShareViewModel(
             usersRepo.uploadUserImage(user.uid, imageUri).onSuccessTask { downloadUrl ->
                 Tasks.whenAll(
                     usersRepo.setUserImage(user.uid, downloadUrl!!),
-                    usersRepo.createFeedPost(user.uid, mkFeedPost(user, caption, downloadUrl.toString()))
+                    feedPostRepo.createFeedPost(user.uid, mkFeedPost(user, caption, downloadUrl.toString()))
                 )
             }.addOnFailureListener(onFailureListener)
         }
