@@ -23,10 +23,10 @@ class SearchActivity : BaseActivity(), TextWatcher {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        setupBottomNavigation(1)
         Log.d(TAG, "onCreate: ")
 
-        setupAuthGuard {
+        setupAuthGuard { uid ->
+            setupBottomNavigation(uid, 1)
             mAdapter = ImagesAdapter()
             search_result_recycler.layoutManager = GridLayoutManager(this, 3)
             search_result_recycler.adapter = mAdapter

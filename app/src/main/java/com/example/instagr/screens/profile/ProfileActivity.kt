@@ -19,7 +19,6 @@ class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        setupBottomNavigation(4)
         Log.d(TAG, "onCreate: ")
 
         edit_profile_button.setOnClickListener {
@@ -41,6 +40,7 @@ class ProfileActivity : BaseActivity() {
 
 
         setupAuthGuard { uid ->
+            setupBottomNavigation(uid,4)
             mViewModel = initViewModel()
             mViewModel.init(uid)
             mViewModel.user.observe(this, Observer {
